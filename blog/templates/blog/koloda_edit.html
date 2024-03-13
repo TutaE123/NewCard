@@ -1,0 +1,10 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>Колода</h1>
+    <form method="POST" class="denunc-form">
+        {% csrf_token %}
+        {{ form.as_div }}
+        <button type="submit" class="save btn btn-default">Сохранить</button>
+    </form>
+{% endblock %}

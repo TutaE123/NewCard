@@ -1,0 +1,18 @@
+{% extends "blog/base.html" %}
+
+{% block content %}
+    {% if form.errors %}
+        <p>Что-то не так. Старайтесь лучше!</p>
+    {% endif %}
+    <p>Вы уже в системе <a href="{% url 'login' %}">авторизируйтесь</a></p>
+    
+    <div class="wrapper">
+        <form method="POST">
+            {% csrf_token %}
+            {{register_form.as_div}}
+            <input class='knopka' type="submit" value="Зарегистрироваться" />
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+    </div>
+
+{% endblock %}

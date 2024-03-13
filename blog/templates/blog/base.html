@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+    <head>
+        <title>Карточки</title>
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+        
+    </head>
+    <body>
+        <div class="page-header">
+            <h1><a href="/">Главный экран</a></h1>
+            {% if user.is_authenticated %}
+                <a href="{% url 'koloda_new' %}" class="top-menu">Добавить колоду</span></a>
+                <a href="{% url 'cart_new' %}" class="top-menu">Добавить карточку</span></a>
+                <p class="top-menu top2">Товарищ <a href="{% url 'profil' %}">{{ user.username }} </a><small>(<a href="{% url 'logout' %}">Выйти</a>)</small></p>
+                {% else %}
+                <a href="{% url 'login' %}" class="top-menu">Вход</span></a>
+            {% endif %}
+        </div>
+        
+        {% block content %}
+        {% endblock %}
+
+        <section>
+
+        </section>
+    </body>
+</html>
+

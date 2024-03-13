@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    
+{% for cart in cart %}
+<div class="cards">
+    <div class="card">
+        <div class="krug"></div>
+        <p>{{ cart.лицо }}</p>
+        <hr/>
+        <p>{{ cart.изнанка }}</p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

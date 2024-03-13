@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    {% for koloda in kolodas %}
+    <div class="post">
+        <h1 style="margin-top: 10px; margin-bottom: 12px;"><a href="{% url 'koloda_detail' pk=koloda.pk %}">{{ koloda.title }}</a></h1>
+        
+    </div>
+    {% endfor %}
+    {% endif%}
+
+{% endblock %}
