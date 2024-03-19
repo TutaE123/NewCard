@@ -1,16 +1,19 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    
-{% for cart in cart %}
 <div class="cards">
-    <div class="card">
-        <div class="krug"></div>
-        <p>{{ cart.лицо }}</p>
-        <hr/>
-        <p>{{ cart.изнанка }}</p>
-    </div>
+    {% for cart in carts %}
+       
+            <div class="card">
+                <div class="krug"></div>
+                <a href="{% url 'cart_detail' pk=cart.pk %}">{{ cart.лицо }}</a>
+                <hr/>
+                <p>{{ cart.изнанка }}</p>
+                <a class="btn btn-default" href="{% url 'cart_remove' pk=cart.pk %}">удалить</span></a>
+            </div>
+        
+    {% endfor %}
 </div>
-{% endfor %}
+
 
 {% endblock %}

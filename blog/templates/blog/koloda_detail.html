@@ -6,21 +6,13 @@
         <h1>{{ koloda.title }}</h1>   
         {% if user.is_authenticated %}
             <a class="btn btn-default" href="{% url 'koloda_edit' pk=koloda.pk %}">edit</span></a>
-            <a href="% url 'cart_list' %">список карточек</a>
+            </hr>
+            <a href="{% url 'cart' pk=koloda.pk %}">список карточек</a>
             {% endif %}
         
 
     </div>
 
-    {% for cart in carts %}
-    <div class="cards">
-        <div class="card">
-            <div class="krug"></div>
-            <p>{{ cart.лицо }}</p>
-            <hr/>
-            <p>{{ cart.изнанка }}</p>
-        </div>
-    </div>
-    {% endfor %}
+    
 
 {% endblock %}

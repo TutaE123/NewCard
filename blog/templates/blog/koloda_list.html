@@ -2,12 +2,13 @@
 
 {% block content %}
     {% if user.is_authenticated %}
-    {% for koloda in kolodas %}
-    <div class="post">
-        <h1 style="margin-top: 10px; margin-bottom: 12px;"><a href="{% url 'koloda_detail' pk=koloda.pk %}">{{ koloda.title }}</a></h1>
+        {% for koloda in kolodas %}
+        <div class="post">
+            <h1 style="margin-top: 10px; margin-bottom: 12px;"><a href="{% url 'koloda_detail' pk=koloda.pk %}">{{ koloda.title }}</a></h1>           
+        </div>
+        <a class="btn btn-default" href="{% url 'koloda_remove' pk=koloda.pk %}">удалить</a> 
+        {% endfor %}
         
-    </div>
-    {% endfor %}
     {% endif%}
 
 {% endblock %}

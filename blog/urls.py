@@ -4,6 +4,8 @@ from . import views
 
 urlpatterns = [
     path('', views.koloda_list, name='koloda_list'),
+
+    path('koloda/<int:pk>/cart/', views.cart_list, name='cart'),
     
     path('koloda/<int:pk>/', views.koloda_detail, name='koloda_detail'),
 
@@ -18,5 +20,8 @@ urlpatterns = [
 
     path('register/', views.register_view, name='register'),
     path('profil/', views.profil, name='profil'),
+
+    path('cart/<pk>/remove/', views.cart_remove, name='cart_remove'),
+    path('koloda/<pk>/remove/', views.koloda_remove, name='koloda_remove'),
     
 ]

@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+         
+        {% if user.is_authenticated %}
+
+            <div class="card">
+                <div class="krug"></div>
+                <a href="{% url 'cart_detail' pk=cart.pk %}">{{ cart.лицо }}</a>
+                <hr/>
+                <p>{{ cart.изнанка }}</p>
+                <a class="btn btn-default" href="{% url 'cart_edit' pk=cart.pk %}">edit</span></a>
+            </div>
+        {% endif %}
+        
+
+
+    
+
+{% endblock %}

@@ -67,13 +67,15 @@ def profil(request):
 
 
 
-def cart_list(request):
-    carts = Cart.objects.all()
-    return render(request, 'blog/card_detail.html', {'carts': carts})
+def cart_list(request, pk):
+    koloda = get_object_or_404(Koloda, pk=pk)
+    carts = Cart.objects.filter(koloda=pk)
+    return render(request, 'blog/cart_list.html', {'carts': carts, 'koloda': koloda})
+
 
 def cart_detail(request, pk):
     cart = get_object_or_404(Cart, pk=pk)
-    return render(request, 'blog/cart_list.html', {'cart': cart})
+    return render(request, 'blog/cart_detail.html', {'cart': cart})
 
 @login_required
 def cart_new(request):
@@ -82,7 +84,7 @@ def cart_new(request):
         if form.is_valid():
             cart = form.save(commit=False)
             cart.save()
-            return redirect('card_detail', pk=cart.pk)
+            return redirect('cart_detail', pk=cart.pk)
     else:
         form = CartForm()
     return render(request, 'blog/cart_edit.html', {'form': form})
@@ -96,7 +98,18 @@ def cart_edit(request, pk):
             cart = form.save(commit=False)
             cart.author = request.user
             cart.save()
-            return redirect('koloda_detail', pk=cart.pk)
+            return redirect('cart_detail', pk=cart.pk)
     else:
         form = CartForm(instance=cart)
     return render(request, 'blog/cart_edit.html', {'form': form})
+
+
+def cart_remove(request, pk):
+    cart = get_object_or_404(Cart, pk=pk)
+    cart.delete()
+    return redirect('koloda_list')
+
+def koloda_remove(request, pk):
+    koloda = get_object_or_404(Koloda, pk=pk)
+    koloda.delete()
+    return redirect('koloda_list')
